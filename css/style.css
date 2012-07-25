@@ -1,0 +1,1028 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+	background-color: #051729;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#051729)); 
+	background-image: -webkit-linear-gradient(top, #000000, #051729); 
+	background-image:    -moz-linear-gradient(top, #000000, #051729); 
+	background-image:     -ms-linear-gradient(top, #000000, #051729); 
+	background-image:      -o-linear-gradient(top, #000000, #051729); 
+	background-image:         linear-gradient(top, #000000, #051729);
+	background-attachment: fixed;
+	background-repeat: repeat-x;
+	color: white;
+	font: 20px/30px helvetica, arial, sans-serif;
+}
+
+.ie-bg {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#000000', EndColorStr='#051729');
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+#forkme {
+	background-color: white;
+	border: 1px solid white;
+	overflow: hidden;
+	position: fixed;
+	right: -50px;
+	top: 50px;
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-moz-box-shadow: 0 0 40px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 0 0 40px rgba(0,0,0,0.4);
+	-o-box-shadow: 0 0 40px rgba(0,0,0,0.4);
+	-ms-box-shadow: 0 0 40px rgba(0,0,0,0.4);
+	box-shadow: 0 0 40px rgba(0,0,0,0.4);
+	z-index: 30;
+	border-image: initial;
+}
+
+#forkme a {
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	color: black;
+	display: block;
+	font: bold 13px Helvetica, Arial, sans-serif;
+	margin: 0.05em 0 0.075em 0;
+	padding: 0.3em 3.5em;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 0 0.5em rgba(0,0,0,0.1);
+	border-image: initial;
+}
+
+p a {
+	border-bottom: 1px dashed rgba(235, 221, 71, 0.4);
+	color: #EBDD47;
+	display: inline-block;
+	line-height: 32px;
+	text-decoration: none;
+}
+p a:hover {
+	background-color: rgba(235, 221, 71, 0.1);
+	border-style: solid;
+	text-shadow: 0 4px 1px black;
+}
+
+header {
+	min-width: 640px;
+	position: absolute;
+	width: 100%;
+	z-index: 20;
+}
+.home header {
+	position: fixed;
+}
+header nav {
+	float: left;
+	margin-left: 10px;
+	margin-top: 73px;
+}
+nav li {
+	display: inline-block;
+}
+
+.credits {
+	background-color: rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 14px;
+	line-height: 20px;
+	text-shadow: 0 0 1px black;
+	width: 100%;
+}
+
+.home .credits {
+	bottom: 0;
+	color: #f0f0f0;
+	font-size: 12px;
+	left: 0;
+	line-height: 18px;
+	position: fixed;
+	z-index: 40;
+}
+
+.credits .inner {
+	padding: 30px 60px;
+}
+
+.home .credits .inner {
+	padding: 20px 60px 12px;
+}
+
+.credits img {
+	border: 1px solid #d0d0d0;
+	height: 64px;
+	float: left;
+	margin-right: 15px;
+	width: 64px;
+}
+
+.home .credits img {
+	height: 50px;
+	width: 50px;
+}
+
+.credits strong {
+	font-size: 18px;
+	line-height: 27px;
+}
+
+.home .credits strong {
+	font-size: 14px;
+	line-height: 18px;
+}
+
+.credits a {
+	color: #EBDD47;
+	text-decoration: none;
+}
+
+.credits a:hover {
+	background-color: rgba(235, 221, 71, 0.1);
+	text-shadow: 0 3px 1px black;
+}
+
+.social {
+	bottom: 26px;
+	clear: left;
+	overflow: hidden;
+	padding-top: 15px;
+	position: absolute;
+	right: 10px;
+	width: 275px;
+}
+
+.twitter-share-button {
+	overflow: hidden;
+	width: 98px !important;
+}
+
+.fb-like {
+	position: absolute !important;
+	left: 179px;
+	top: 15px;
+}
+
+.fb_edge_comment_widget iframe {
+	position: absolute;
+	top: -300px;
+}
+
+h1 {
+	float: left;
+	font: 72px/72px 'Jockey One', helvetica, arial, sans-serif;
+	padding: 40px 12px 40px 62px;
+	text-shadow: 0 0 60px rgba(164, 204, 244, 0.5), 1px 1px 0 #082644, 2px 2px 0 #082644, 3px 3px 0 #082644, 4px 4px 0 #082644;
+	text-transform: uppercase;
+}
+h1:hover {
+	text-shadow: 0 0 60px rgba(164, 204, 244, 0.65), 1px 1px 0 #082644, 2px 2px 0 #082644, 3px 3px 0 #082644, 4px 4px 0 #082644;
+}
+h1 a {
+	color: white;
+	text-decoration: none;
+}
+
+.main {
+	overflow: hidden;
+	padding-top: 150px;
+	position: relative;
+	z-index: 10;
+}
+.home .main {
+	width: 3800px;
+}
+.section {
+	display: block;
+	margin: 0 40px 80px;
+	position: relative;
+	vertical-align: top;
+	width: 1000px;
+	z-index: 10;
+}
+.home .section {
+	display: inline-block;
+	margin: 0 40px;
+}
+
+h2 {
+	color: transparent;
+	font-size: 200px;
+	height: 200px;
+	line-height: 200px;
+	letter-spacing: 5px;
+	position: relative;
+	text-transform: uppercase;
+}
+h2 .text {
+	color: transparent;
+	position: absolute;
+}
+h3 {
+	color: #D1E2FA;
+	font-size: 34px;
+	line-height: 80px;
+	margin-bottom: 12px;
+	padding-left: 20px;
+	text-shadow: 0 2px 1px black;
+}
+.home h3 {
+	color: white;
+	margin-bottom: 0;
+}
+h4 {
+	font-size: 24px;
+	line-height: 40px;
+	margin-bottom: 8px;
+	padding-left: 20px;
+	text-shadow: 0 2px 1px black;
+}
+h4 a {
+	border-bottom: 1px dashed rgba(235, 221, 71, 0.4);
+	color: #EBDD47;
+	display: inline-block;
+	line-height: 40px;
+	text-decoration: none;
+}
+h4 a:hover {
+	background-color: rgba(235, 221, 71, 0.1);
+	border-style: solid;
+}
+p, pre {
+	font-size: 18px;
+	line-height: 38px;
+	margin-bottom: 30px;
+	padding: 0 20px;
+	text-shadow: 0 1px 1px black;
+	width: 620px;
+}
+pre {
+	border-radius: 11px;
+	background-color: rgba(255,255,255,.1);
+	border: 1px solid rgba(255,255,255,.125);
+	margin: 40px 0;
+	padding: 5px 20px;
+}
+code {
+	font-family: monaco, courier new, monospace;
+	font-size: 17px;
+}
+p code {
+	margin: 0 4px;
+}
+button, header nav a {
+	background-color: white;
+	color: #082644;
+	cursor: pointer;
+	margin-left: 10px;
+	border: 0;
+	padding: 6px 13px;
+	font-size: 13px;
+	border-radius: 11px;
+	margin-top: 12px;
+	text-decoration: none;
+}
+button:hover, header nav a:hover {
+	box-shadow: 0 0 17px rgba(164, 204, 244, 0.6);
+}
+button:active, header nav a:active, header nav a.current {
+	box-shadow: 0 0 34px rgba(164, 204, 244, 0.6);
+}
+.sun {
+	background-color: #5C550A;
+	border-radius: 100px;
+	box-shadow: 0 0 30px #5C550A;
+	height: 200px;
+	left: 1150px;
+	position: fixed;
+	top: 650px;
+	width: 200px;
+	z-index: 4;
+}
+.planet {
+	background-color: #000000;
+	border-radius: 1000px;
+	left: -650px;
+	height: 2000px;
+	position: fixed;
+	top: 600px;
+	width: 2000px;
+	z-index: 5;
+}
+.constellation {
+	float:left;
+	height: 196px;
+	position: relative;
+	width: 140px;
+}
+.star {
+	background-color: white;
+	border-radius: 4px;
+	box-shadow: 0 0 20px rgba(164, 204, 244, 0.65);
+	height: 8px;
+	left: 0;
+	margin: 1px;
+	position: absolute;
+	top: 0;
+	width: 8px;
+	z-index: 2;
+}
+.constellation .small {
+	border-radius: 2px;
+	height: 4px;
+	margin: 3px;
+	width: 4px;
+}
+.constellation .medium {
+	border-radius: 3px;
+	height: 6px;
+	margin: 2px;
+	width: 6px;
+}
+.constellation .large {
+	border-radius: 4px;
+	height: 8px;
+	margin: 1px;
+	width: 8px;
+}
+.constellation .xlarge {
+	border-radius: 6px;
+	height: 10px;
+	width: 10px;
+}
+
+/* Syntax */
+
+.atv, .lit, .str, .kwd { color: #EBDD47 }
+
+.com, pre a { color: #C3D9F8 }
+pre a {
+	text-decoration: none;
+	display: inline-block;
+	border-bottom: 1px dashed #85ABE0;
+	line-height: 25px;
+}
+pre a:hover {
+	background-color: rgba(133, 171, 224, 0.1);
+	border-style: solid;
+}
+
+/* Debug */
+
+#debugOffsets {
+	display: none;
+}
+
+#debugOffsets .horizontal-offset {
+	background-color: pink;
+	height: 100%;
+	left: 40px;
+	position: fixed;
+	top: 0;
+	width: 2px;
+	z-index: 99999;
+}
+
+#debugOffsets .horizontal-offset span {
+	background-color: pink;
+	color: black;
+	font-size: 12px;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 150px;
+}
+
+.debugOffsets h2,
+.debugOffsetParents h2 {
+	outline: 4px solid blue;
+}
+
+.debugOffsetParentsDefault h2 {
+	outline: 0;
+}
+
+.debugOffsets h2 .debug-h2-label,
+.debugOffsetParents h2 .debug-h2-label {
+	background-color: blue;
+	bottom: -24px;
+	color: black;
+	letter-spacing: 0;
+	line-height: 24px;
+	font-size: 12px;
+	position: absolute;
+	right: -4px;
+	text-align: center;
+	text-transform: none;
+	width: 500px;
+}
+.debugOffsetParentsDefault h2 .debug-h2-label {
+	display: none;
+}
+.debugOffsetParents h2 .debug-constellation-label {
+	background-color: yellow;
+	color: black;
+	letter-spacing: 0;
+	line-height: 24px;
+	font-size: 12px;
+	position: absolute;
+	right: -2px;
+	text-align: center;
+	text-transform: none;
+	top: -24px;
+	width: 250px;
+}
+
+.debugOffsetParents .constellation {
+	outline: 2px solid yellow;
+}
+
+/* Letters */
+
+/* A */
+
+.a .star1 {
+    top: 156px;
+    left: 7px;
+}
+.a .star2 {
+    top: 133px;
+    left: 17px;
+}
+.a .star3 {
+    top: 111px;
+    left: 26px;
+}
+.a .star4 {
+    top: 84px;
+    left: 37px;
+}
+.a .star5 {
+    top: 55px;
+    left: 49px;
+}
+.a .star6 {
+    top: 29px;
+    left: 60px;
+}
+.a .star7 {
+    left: 75px;
+    top: 50px;
+}
+.a .star8 {
+    left: 85px;
+    top: 81px;
+}
+.a .star9 {
+    left: 95px;
+    top: 110px;
+}
+.a .star10 {
+    left: 103px;
+    top: 133px;
+}
+.a .star11 {
+    left: 110px;
+    top: 155px;
+}
+.a .star12 {
+    top: 111px;
+    left: 49px;
+}
+.a .star13 {
+    top: 110px;
+    left: 71px;
+}
+
+/* C */
+.c .star1 {
+	left: 111px;
+	top: 54px;
+}
+.c .star2 {
+	left: 95px;
+	top: 31px;
+}
+.c .star3 {
+	left: 69px;
+	top: 24px;
+}
+.c .star4 {
+	left: 43px;
+	top: 27px;
+}
+.c .star5 {
+	left: 23px;
+	top: 40px;
+}
+.c .star6 {
+	left: 12px;
+	top: 61px;
+}
+.c .star7 {
+	left: 7px;
+	top: 86px;
+}
+.c .star8 {
+	left: 9px;
+	top: 112px;
+}
+.c .star9 {
+	left: 18px;
+	top: 135px;
+}
+.c .star10 {
+	left: 36px;
+	top: 153px;
+}
+.c .star11 {
+	left: 60px;
+	top: 159px;
+}
+.c .star12 {
+	left: 88px;
+	top: 153px;
+}
+.c .star13 {
+	left: 109px;
+	top: 136px;
+}
+.c .star14 {
+	left: 116px;
+	top: 115px;
+}
+
+/* E */
+
+.e .star1 {
+	top: 31px;
+	left: 25px;
+}
+.e .star2 {
+    top: 29px;
+    left: 52px;
+}
+.e .star3 {
+    top: 30px;
+    left: 80px;
+}
+.e .star4 {
+    top: 31px;
+    left: 108px;
+}
+.e .star5 {
+    top: 58px;
+    left: 24px;
+}
+.e .star6 {
+    top: 87px;
+    left: 22px;
+}
+.e .star7 {
+    top: 89px;
+    left: 50px;
+}
+.e .star8 {
+    top: 88px;
+    left: 80px;
+}
+.e .star9 {
+    top: 88px;
+    left: 104px;
+}
+.e .star10 {
+    top: 121px;
+    left: 22px;
+}
+.e .star11 {
+    top: 153px;
+    left: 22px;
+}
+.e .star12 {
+    top: 155px;
+    left: 51px;
+}
+.e .star13 {
+    top: 154px;
+    left: 80px;
+}
+.e .star14 {
+    top: 155px;
+    left: 106px;
+}
+
+/* J */
+.j {
+	width: 111px;
+}
+.j .star1{
+	left: 81px;
+	top: 33px;
+}
+.j .star2{
+	left: 81px;
+	top: 59px;
+}
+.j .star3{
+	left: 80px;
+	top: 89px;
+}
+.j .star4{
+	left: 81px;
+	top: 120px;
+}
+.j .star5{
+	left: 75px;
+	top: 148px;
+}
+.j .star6{
+	left: 47px;
+	top: 157px;
+}
+.j .star7{
+	left: 24px;
+	top: 146px;
+}
+.j .star8{
+	left: 15px;
+	top: 123px;
+}
+
+/* N */
+.n .star1{
+	left: 17px;
+	top: 156px;
+}
+.n .star2{
+	left: 17px;
+	top: 122px;
+}
+.n .star3{
+	left: 17px;
+	top: 87px;
+}
+.n .star4{
+	left: 17px;
+	top: 61px;
+}
+.n .star5{
+	left: 18px;
+	top: 31px;
+}
+.n .star6{
+	left: 44px;
+	top: 57px;
+}
+.n .star7{
+	left: 59px;
+	top: 80px;
+}
+.n .star8{
+	left: 77px;
+	top: 106px;
+}
+.n .star9{
+	left: 92px;
+	top: 130px;
+}
+.n .star10{
+	left: 113px;
+	top: 156px;
+}
+.n .star11{
+	left: 113px;
+	top: 120px;
+}
+.n .star12{
+	left: 113px;
+	top: 90px;
+}
+.n .star13{
+	left: 113px;
+	top: 60px;
+}
+.n .star14{
+	left: 114px;
+	top: 34px;
+}
+
+/* O */
+.o {
+	width: 167px;
+}
+.o .star1 {
+	left: 73px;
+	top: 24px;
+}
+.o .star2 {
+	left: 99px;
+	top: 28px;
+}
+.o .star3 {
+	left: 118px;
+	top: 41px;
+}
+.o .star4 {
+	left: 130px;
+	top: 63px;
+}
+.o .star5 {
+	left: 134px;
+	top: 91px;
+}
+.o .star6 {
+	left: 130px;
+	top: 121px;
+}
+.o .star7 {
+	left: 113px;
+	top: 146px;
+}
+.o .star8 {
+	left: 87px;
+	top: 159px;
+}
+.o .star9 {
+	left: 56px;
+	top: 157px;
+}
+.o .star10 {
+	left: 31px;
+	top: 144px;
+}
+.o .star11 {
+	left: 16px;
+	top: 115px;
+}
+.o .star12 {
+	left: 14px;
+	top: 83px;
+}
+.o .star13 {
+	left: 22px;
+	top: 52px;
+}
+.o .star14 {
+	left: 43px;
+	top: 32px;
+}
+
+/* S */
+.s .star1 {
+	left: 103px;
+	top: 55px;
+}
+.s .star2 {
+	left: 89px;
+	top: 33px;
+}
+.s .star3 {
+	left: 63px;
+	top: 24px;
+}
+.s .star4 {
+	left: 40px;
+	top: 29px;
+}
+.s .star5 {
+	left: 21px;
+	top: 43px;
+}
+.s .star6 {
+	left: 20px;
+	top: 70px;
+}
+.s .star7 {
+	left: 44px;
+	top: 88px;
+}
+.s .star8 {
+	left: 70px;
+	top: 94px;
+}
+.s .star9 {
+	left: 98px;
+	top: 104px;
+}
+.s .star10 {
+	left: 108px;
+	top: 125px;
+}
+.s .star11 {
+	left: 98px;
+	top: 149px;
+}
+.s .star12 {
+	left: 73px;
+	top: 160px;
+}
+.s .star13 {
+	left: 45px;
+	top: 160px;
+}
+.s .star14 {
+	left: 23px;
+	top: 149px;
+}
+.s .star15 {
+	left: 13px;
+	top: 128px;
+}
+
+.t .star1 {
+	left: 7px;
+	top: 28px;
+}
+.t .star2 {
+	left: 31px;
+	top: 28px;
+}
+.t .star3 {
+	left: 59px;
+	top: 28px;
+}
+.t .star4 {
+	left: 88px;
+	top: 26px;
+}
+.t .star5 {
+	left: 111px;
+	top: 27px;
+}
+.t .star6 {
+	left: 58px;
+	top: 53px;
+}
+.t .star7 {
+	left: 59px;
+	top: 78px;
+}
+.t .star8 {
+	left: 58px;
+	top: 105px;
+}
+.t .star9 {
+	left: 59px;
+	top: 133px;
+}
+.t .star10 {
+	left: 59px;
+	top: 157px;
+}
+
+/* X */
+.x .star1 {
+	left: 17px;
+	top: 27px;
+}
+.x .star2 {
+	left: 31px;
+	top: 49px;
+}
+.x .star3 {
+	left: 44px;
+	top: 66px;
+}
+.x .star4 {
+	left: 60px;
+	top: 90px;
+}
+.x .star5 {
+	left: 75px;
+	top: 67px;
+}
+.x .star6 {
+	left: 92px;
+	top: 47px;
+}
+.x .star7 {
+	left: 105px;
+	top: 28px;
+}
+.x .star8 {
+	left: 12px;
+	top: 153px;
+}
+.x .star9 {
+	left: 31px;
+	top: 131px;
+}
+.x .star10 {
+	left: 44px;
+	top: 109px;
+}
+.x .star11 {
+	left: 75px;
+	top: 108px;
+}
+.x .star12 {
+	left: 90px;
+	top: 131px;
+}
+.x .star13 {
+	left: 105px;
+	top: 154px;
+}
+
+/* Y */
+.y .star1 {
+	left: 10px;
+	top: 29px;
+}
+.y .star2 {
+	left: 26px;
+	top: 53px;
+}
+.y .star3 {
+	left: 39px;
+	top: 75px;
+}
+.y .star4 {
+	left: 59px;
+	top: 103px;
+}
+.y .star5 {
+	left: 79px;
+	top: 77px;
+}
+.y .star6 {
+	left: 93px;
+	top: 55px;
+}
+.y .star7 {
+	left: 107px;
+	top: 30px;
+}
+.y .star8 {
+	left: 58px;
+	top: 130px;
+}
+.y .star9 {
+	left: 59px;
+	top: 158px;
+}
+
+/* . */
+.dot .star1 {
+	left: 15px;
+	top: 158px;
+}

@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Stellar.js - iOS Demo</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" /> 
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+		<style type="text/css">
+
+		html {
+		    overflow: hidden;
+		    background: #333;
+		    font-family: Helvetica;
+		}
+
+		#container {
+		    position: absolute;
+		    left: 0;
+		    top: 44px;
+		    bottom: 24px;
+		    width: 100%;
+		    background: black;
+		    overflow: hidden;
+		}
+
+		.bar {
+		    position: absolute;
+		    background: #222;
+		    left: 0;
+		    width: 100%;
+		    color: #fff;
+		    padding: 5px 0;
+		    font-size: 10px;
+		    font-weight: bold;
+		    text-align: center;
+				text-shadow: 0 -2px 0 black;
+		    -webkit-box-sizing: border-box;
+		}
+
+		.bar.top {
+		    top: 0;
+		    height: 44px;
+		    border-bottom: 1px solid #000;
+		    padding: 10px;
+		    font-size: 22px;
+		}
+
+		.bar.bottom {
+		    bottom: 0;
+		}
+		
+		
+		/* My styles */
+				
+		#page {
+			height: 1000px;
+			overflow: hidden;
+			position: relative;
+		}
+		
+		.sections {
+			margin: 0 auto;
+			width: 290px;
+		}
+		
+		.section {
+			position: relative;
+			height: 35px;
+		}
+		
+		.section.two {
+			left: 40px;
+		}
+		
+		.section.three {
+			left: 50px;
+		}
+		
+		.section.four {
+			left: 40px;
+		}
+		
+		.section.five {
+			left: 60px;
+		}
+		
+		.section.seven {
+			left: 10px;
+		}
+		
+		.section.eight {
+			left: 20px;
+		}
+		
+		.section.nine {
+			left: 40px;
+		}
+		
+		.section.ten {
+			left: 30px;
+		}
+		
+		.stellar-particle {
+			background-color: white;
+			height: 20px;
+			position: absolute;
+			width: 20px;
+			z-index: 999;
+		}
+		
+		.stellar-particle.one {
+			left: 10px;
+			top: 10px;
+		}
+
+		.stellar-particle.two {
+			left: 60px;
+			top: 60px;
+		}
+		
+		.stellar-particle.three {
+			left: 110px;
+			top: 110px;
+		}
+		
+		.stellar-particle.four {
+			left: 160px;
+			top: 160px;
+		}
+		
+		.stellar-particle.five {
+			left: 210px;
+			top: 210px;
+		}
+		
+		a {
+			color: white;
+			display: inline-block;
+			border-bottom: 1px solid white;
+			text-decoration: none;
+		}
+
+		</style>
+		<script type="text/javascript" src="js/scrollability.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/stellar.js"></script>
+		<script language="javascript">		
+		$(function(){
+			$('#page').stellar({
+				horizontalScrolling: false,
+				scrollProperty: 'transform',
+				verticalOffset: -100
+			});
+			
+			//Prevent text selection
+			$(document).mousedown(function(e){
+				e.preventDefault();
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<div class="bar top"><a href="../">Stellar.js</a> iOS Demo</div>
+		<div class="bar bottom">Demo created using <a href="https://github.com/joehewitt/scrollability">Scrollability</a></div>
+		<div id="container">
+			<div id="page" class="scrollable vertical">
+				
+				<div class="sections">
+					
+					<div class="section one">
+						<div class="stellar-particle one" data-stellar-ratio="3"></div>
+						<div class="stellar-particle two" data-stellar-ratio="5"></div>
+						<div class="stellar-particle three" data-stellar-ratio="7"></div>
+						<div class="stellar-particle four" data-stellar-ratio="4"></div>
+						<div class="stellar-particle five" data-stellar-ratio="9"></div>
+					</div>
+				
+					<div class="section two">
+						<div class="stellar-particle one" data-stellar-ratio="8"></div>
+						<div class="stellar-particle two" data-stellar-ratio="4"></div>
+						<div class="stellar-particle three" data-stellar-ratio="2"></div>
+						<div class="stellar-particle four" data-stellar-ratio="8"></div>
+						<div class="stellar-particle five" data-stellar-ratio="10"></div>
+					</div>
+				
+					<div class="section three">
+						<div class="stellar-particle one" data-stellar-ratio="10"></div>
+						<div class="stellar-particle two" data-stellar-ratio="8"></div>
+						<div class="stellar-particle three" data-stellar-ratio="4"></div>
+						<div class="stellar-particle four" data-stellar-ratio="8"></div>
+						<div class="stellar-particle five" data-stellar-ratio="10"></div>
+					</div>
+				
+					<div class="section four">
+						<div class="stellar-particle one" data-stellar-ratio="4"></div>
+						<div class="stellar-particle two" data-stellar-ratio="6"></div>
+						<div class="stellar-particle three" data-stellar-ratio="3"></div>
+						<div class="stellar-particle four" data-stellar-ratio="8"></div>
+						<div class="stellar-particle five" data-stellar-ratio="7"></div>
+					</div>
+				
+					<div class="section five">
+						<div class="stellar-particle one" data-stellar-ratio="2"></div>
+						<div class="stellar-particle two" data-stellar-ratio="4"></div>
+						<div class="stellar-particle three" data-stellar-ratio="6"></div>
+						<div class="stellar-particle four" data-stellar-ratio="8"></div>
+						<div class="stellar-particle five" data-stellar-ratio="10"></div>
+					</div>
+				
+					<div class="section six">
+						<div class="stellar-particle one" data-stellar-ratio="9"></div>
+						<div class="stellar-particle two" data-stellar-ratio="4"></div>
+						<div class="stellar-particle three" data-stellar-ratio="3"></div>
+						<div class="stellar-particle four" data-stellar-ratio="6"></div>
+						<div class="stellar-particle five" data-stellar-ratio="10"></div>
+					</div>
+				
+					<div class="section seven">
+						<div class="stellar-particle one" data-stellar-ratio="8"></div>
+						<div class="stellar-particle two" data-stellar-ratio="6"></div>
+						<div class="stellar-particle three" data-stellar-ratio="7"></div>
+						<div class="stellar-particle four" data-stellar-ratio="3"></div>
+						<div class="stellar-particle five" data-stellar-ratio="9"></div>
+					</div>
+				
+					<div class="section eight">
+						<div class="stellar-particle one" data-stellar-ratio="2"></div>
+						<div class="stellar-particle two" data-stellar-ratio="8"></div>
+						<div class="stellar-particle three" data-stellar-ratio="4"></div>
+						<div class="stellar-particle four" data-stellar-ratio="6"></div>
+						<div class="stellar-particle five" data-stellar-ratio="7"></div>
+					</div>
+				
+					<div class="section nine">
+						<div class="stellar-particle one" data-stellar-ratio="8"></div>
+						<div class="stellar-particle two" data-stellar-ratio="9"></div>
+						<div class="stellar-particle three" data-stellar-ratio="3"></div>
+						<div class="stellar-particle four" data-stellar-ratio="6"></div>
+						<div class="stellar-particle five" data-stellar-ratio="4"></div>
+					</div>
+				
+					<div class="section ten">
+						<div class="stellar-particle one" data-stellar-ratio="9"></div>
+						<div class="stellar-particle two" data-stellar-ratio="5"></div>
+						<div class="stellar-particle three" data-stellar-ratio="6"></div>
+						<div class="stellar-particle four" data-stellar-ratio="2"></div>
+						<div class="stellar-particle five" data-stellar-ratio="7"></div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>

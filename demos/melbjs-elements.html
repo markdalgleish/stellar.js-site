@@ -1,0 +1,387 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Stellar.js MelbJS Demo</title>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/stellar.js"></script>
+		<script>
+		$(function(){
+			//Generate 'MelbJS' clones
+			var $melbjs = $('div.melbjs').detach();
+				
+			for (var i = 0; i < 50; i++) {
+				$melbjs.clone().appendTo('#main');
+			}
+			
+			$('div.pixel').each(function(){
+				var ratio = 1 + Math.random() * 1.5;
+				
+				$(this).attr('data-stellar-ratio', ratio).css('z-index', Math.round(ratio * 1000));
+			});
+			
+			$(window).stellar({
+				horizontalOffset: 100,
+				verticalOffset: 200
+			});
+		});
+		</script>
+	</head>
+	<body>
+		
+		<div id="main">
+			<div class="melbjs" data-stellar-offset-parent="true">
+			
+				<div class="word">
+				
+					<div class="letter m">
+						<div class="pixel pixel-1"></div>
+						<div class="pixel pixel-2"></div>
+						<div class="pixel pixel-3"></div>
+						<div class="pixel pixel-4"></div>
+						<div class="pixel pixel-5"></div>
+						<div class="pixel pixel-6"></div>
+						<div class="pixel pixel-7"></div>
+						<div class="pixel pixel-8"></div>
+						<div class="pixel pixel-9"></div>
+						<div class="pixel pixel-10"></div>
+						<div class="pixel pixel-11"></div>
+						<div class="pixel pixel-12"></div>
+						<div class="pixel pixel-13"></div>
+						<div class="pixel pixel-14"></div>
+						<div class="pixel pixel-15"></div>
+						<div class="pixel pixel-16"></div>
+						<div class="pixel pixel-17"></div>
+					</div>
+
+					<div class="letter e">
+						<div class="pixel pixel-1"></div>
+						<div class="pixel pixel-2"></div>
+						<div class="pixel pixel-3"></div>
+						<div class="pixel pixel-4"></div>
+						<div class="pixel pixel-5"></div>
+						<div class="pixel pixel-6"></div>
+						<div class="pixel pixel-7"></div>
+						<div class="pixel pixel-8"></div>
+						<div class="pixel pixel-9"></div>
+					</div>
+
+					<div class="letter l">
+						<div class="pixel pixel-1"></div>
+						<div class="pixel pixel-2"></div>
+						<div class="pixel pixel-3"></div>
+						<div class="pixel pixel-4"></div>
+						<div class="pixel pixel-5"></div>
+					</div>
+
+					<div class="letter b">
+						<div class="pixel pixel-1"></div>
+						<div class="pixel pixel-2"></div>
+						<div class="pixel pixel-3"></div>
+						<div class="pixel pixel-4"></div>
+						<div class="pixel pixel-5"></div>
+						<div class="pixel pixel-6"></div>
+						<div class="pixel pixel-7"></div>
+						<div class="pixel pixel-8"></div>
+					</div>
+
+					<div class="letter j">
+						<div class="pixel pixel-1"></div>
+						<div class="pixel pixel-2"></div>
+						<div class="pixel pixel-3"></div>
+						<div class="pixel pixel-4"></div>
+						<div class="pixel pixel-5"></div>
+						<div class="pixel pixel-6"></div>
+						<div class="pixel pixel-7"></div>
+					</div>
+
+					<div class="letter s">
+						<div class="pixel pixel-1"></div>
+						<div class="pixel pixel-2"></div>
+						<div class="pixel pixel-3"></div>
+						<div class="pixel pixel-4"></div>
+						<div class="pixel pixel-5"></div>
+						<div class="pixel pixel-6"></div>
+						<div class="pixel pixel-7"></div>
+					</div>
+				
+				</div>			
+		
+			</div>
+		</div>
+		
+		<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background-color: #F0DB4F;
+			font-family: helvetica, arial;
+			width: 4054px;
+		}
+		#main {
+			overflow: hidden;
+		}
+		.melbjs {
+			display: inline-block;
+			padding: 0 10px;
+			position: relative;
+		}
+		.word {
+			height: 178px;
+			position: relative;
+			width: 770px;
+		}
+		.letter {
+			display: inline-block;
+			margin-right: 30px;
+			position: relative;
+		}
+		.letter div {
+			background-color: #323330;
+			border: 3px solid rgba(255,255,255,255.2);
+			height: 27px;
+			position: absolute;
+			width: 27px;
+			z-index: 10;
+		}
+		
+		.letter.m {
+			width: 150px;
+		}
+		.letter.m .pixel-1 {
+			left: 0;
+			top: 0;
+		}
+		.letter.m .pixel-2 {
+			left: 30px;
+			top: 0;
+		}
+		.letter.m .pixel-3 {
+			left: 60px;
+			top: 0;
+		}
+		.letter.m .pixel-4 {
+			left: 90px;
+			top: 0;
+		}
+		.letter.m .pixel-5 {
+			left: 120px;
+			top: 0;
+		}
+		.letter.m .pixel-6 {
+			left: 0;
+			top: 30px;
+		}
+		.letter.m .pixel-7 {
+			left: 60px;
+			top: 30px;
+		}
+		.letter.m .pixel-8 {
+			left: 120px;
+			top: 30px;
+		}
+		.letter.m .pixel-9 {
+			left: 0;
+			top: 60px;
+		}
+		.letter.m .pixel-10 {
+			left: 60px;
+			top: 60px;
+		}
+		.letter.m .pixel-11 {
+			left: 120px;
+			top: 60px;
+		}
+		.letter.m .pixel-12 {
+			left: 0;
+			top: 90px;
+		}
+		.letter.m .pixel-13 {
+			left: 60px;
+			top: 90px;
+		}
+		.letter.m .pixel-14 {
+			left: 120px;
+			top: 90px;
+		}
+		.letter.m .pixel-15 {
+			left: 0;
+			top: 120px;
+		}
+		.letter.m .pixel-16 {
+			left: 60px;
+			top: 120px;
+		}
+		.letter.m .pixel-17 {
+			left: 120px;
+			top: 120px;
+		}
+		
+		.letter.e {
+			width: 90px;
+		}
+		.letter.e .pixel-1 {
+			left: 30px;
+			top: 0px;
+		}
+		.letter.e .pixel-2 {
+			left: 0px;
+			top: 30px;
+		}
+		.letter.e .pixel-3 {
+			left: 60px;
+			top: 30px;
+		}
+		.letter.e .pixel-4 {
+			left: 0px;
+			top: 60px;
+		}
+		.letter.e .pixel-5 {
+			left: 30px;
+			top: 60px;
+		}
+		.letter.e .pixel-6 {
+			left: 60px;
+			top: 60px;
+		}
+		.letter.e .pixel-7 {
+			left: 0px;
+			top: 90px;
+		}
+		.letter.e .pixel-8 {
+			left: 30px;
+			top: 120px;
+		}
+		.letter.e .pixel-9 {
+			left: 60px;
+			top: 120px;
+		}
+		
+		.letter.l {
+			width: 60px;
+		}
+		.letter.l .pixel-1 {
+			left: 0px;
+			top: 0px;
+		}
+		.letter.l .pixel-2 {
+			left: 0px;
+			top: 30px;
+		}
+		.letter.l .pixel-3 {
+			left: 0px;
+			top: 60px;
+		}
+		.letter.l .pixel-4 {
+			left: 0px;
+			top: 90px;
+		}
+		.letter.l .pixel-5 {
+			left: 30px;
+			top: 120px;
+		}
+		
+		.letter.b {
+			width: 90px;
+		}
+		.letter.b .pixel-1 {
+			left: 0px;
+			top: 0px;
+		}
+		.letter.b .pixel-2 {
+			left: 0px;
+			top: 30px;
+		}
+		.letter.b .pixel-3 {
+			left: 0px;
+			top: 60px;
+		}
+		.letter.b .pixel-4 {
+			left: 30px;
+			top: 60px;
+		}
+		.letter.b .pixel-5 {
+			left: 0px;
+			top: 90px;
+		}
+		.letter.b .pixel-6 {
+			left: 60px;
+			top: 90px;
+		}
+		.letter.b .pixel-7 {
+			left: 0px;
+			top: 120px;
+		}
+		.letter.b .pixel-8 {
+			left: 30px;
+			top: 120px;
+		}
+		
+		.letter.j {
+			width: 90px;
+		}
+		.letter.j .pixel-1 {
+			left: 30px;
+			top: 0px;
+		}
+		.letter.j .pixel-2 {
+			left: 60px;
+			top: 0px;
+		}
+		.letter.j .pixel-3 {
+			left: 60px;
+			top: 30px;
+		}
+		.letter.j .pixel-4 {
+			left: 60px;
+			top: 60px;
+		}
+		.letter.j .pixel-5 {
+			left: 0px;
+			top: 90px;
+		}
+		.letter.j .pixel-6 {
+			left: 60px;
+			top: 90px;
+		}
+		.letter.j .pixel-7 {
+			left: 30px;
+			top: 120px;
+		}
+		
+		.letter.s {
+			width: 90px;
+		}
+		.letter.s .pixel-1 {
+			left: 30px;
+			top: 0px;
+		}
+		.letter.s .pixel-2 {
+			left: 60px;
+			top: 0px;
+		}
+		.letter.s .pixel-3 {
+			left: 0px;
+			top: 30px;
+		}
+		.letter.s .pixel-4 {
+			left: 30px;
+			top: 60px;
+		}
+		.letter.s .pixel-5 {
+			left: 60px;
+			top: 90px;
+		}
+		.letter.s .pixel-6 {
+			left: 30px;
+			top: 120px;
+		}
+		.letter.s .pixel-7 {
+			left: 0px;
+			top: 120px;
+		}
+		</style>
+		
+	</body>
+</html>
