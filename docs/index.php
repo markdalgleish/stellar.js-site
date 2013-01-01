@@ -49,6 +49,11 @@ $('#main').stellar();
 		<pre><code>$.stellar();</code></pre>
 		<p>This will look for any parallax backgrounds or elements within the specified element and reposition them when the element scrolls.</p>
 	</div>
+
+	<div class="section">
+		<h3>Mobile Support</h3>
+		<p>Support on mobile devices requires a touch scrolling library, and a slightly tweaked configuration. For a full walkthrough on how to implement this correctly, read my blog post <a href="http://markdalgleish.com/2012/10/mobile-parallax-with-stellar-js">"Mobile Parallax with Stellar.js"</a>.</p>
+	</div>
 	
 	<div class="section">
 		<h3>Parallax Elements</h3>
