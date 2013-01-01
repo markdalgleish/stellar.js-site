@@ -1,8 +1,8 @@
 /*!
- * Stellar.js v0.2.3
+ * Stellar.js v0.5.0
  * http://markdalgleish.com/projects/stellar.js
  * 
- * Copyright 2012, Mark Dalgleish
+ * Copyright 2013, Mark Dalgleish
  * This content is released under the MIT license
  * http://markdalgleish.mit-license.org
  */
@@ -17,10 +17,10 @@
 			verticalScrolling: true,
 			horizontalOffset: 0,
 			verticalOffset: 0,
+			responsive: false,
 			parallaxBackgrounds: true,
 			parallaxElements: true,
 			hideDistantElements: true,
-			viewportDetectionInterval: 10000,
 			hideElement: function($elem) { $elem.hide(); },
 			showElement: function($elem) { $elem.show(); }
 		},
@@ -48,10 +48,10 @@
 				setLeft: function($elem, val) { $elem.css('margin-left', val); }
 			},
 			transform: {
-				getTop: function($elem) { return ($elem.css(vendorPrefix + 'transform') !== 'none' ? parseInt($elem.css(vendorPrefix + 'transform').match(/(-?[0-9]+)/g)[5], 10) * -1 : 0); },
+				getTop: function($elem) { return (getComputedStyle($elem[0])[vendorPrefix('transform')] !== 'none' ? parseInt(getComputedStyle($elem[0])[vendorPrefix('transform')].match(/(-?[0-9]+)/g)[5], 10) * -1 : 0); },
 				setTop: function($elem, val) { setTransform($elem, val, 'Y'); },
 
-				getLeft: function($elem) { return ($elem.css(vendorPrefix + 'transform') !== 'none' ? parseInt($elem.css(vendorPrefix + 'transform').match(/(-?[0-9]+)/g)[4], 10) * -1 : 0); },
+				getLeft: function($elem) { return (getComputedStyle($elem[0])[vendorPrefix('transform')] !== 'none' ? parseInt(getComputedStyle($elem[0])[vendorPrefix('transform')].match(/(-?[0-9]+)/g)[4], 10) * -1 : 0); },
 				setLeft: function($elem, val) {	setTransform($elem, val, 'X');	}
 			}
 		},
@@ -68,28 +68,61 @@
 		},
 
 		vendorPrefix = (function() {
-			var prefix = '';
+			var prefixes = /^(Moz|Webkit|Khtml|O|ms|Icab)(?=[A-Z])/,
+				style = document.getElementsByTagName('script')[0].style,
+				prefix = '',
+				prop;
 
-			if ($.browser.webkit) {
-				prefix = '-webkit-';
-			} else if ($.browser.mozilla) {
-				prefix = '-moz-';
-			} else if ($.browser.opera) {
-				prefix = '-o-';
-			} else if ($.browser.msie) {
-				prefix = '-ms-';
+			for (prop in style) {
+				if (prefixes.test(prop)) {
+					prefix = prop.match(prefixes)[0];
+					break;
+				}
 			}
 
-			return prefix;
-		})(),
+			if ('WebkitOpacity' in style) { prefix = 'Webkit'; }
+			if ('KhtmlOpacity' in style) { prefix = 'Khtml'; }
+
+			return function(property) {
+				return prefix + (prefix.length > 0 ? property.charAt(0).toUpperCase() + property.slice(1) : property);
+			};
+		}()),
+
+		supportsBackgroundPositionXY = document.createElement('div').style.backgroundPositionX !== undefined,
+
+		setBackgroundPosition = (function() {
+			return supportsBackgroundPositionXY ?
+				function($elem, x, y) {
+					$elem.css({
+						'background-position-x': x,
+						'background-position-y': y
+					});
+				} :
+				function($elem, x, y) {
+					$elem.css('background-position', x + ' ' + y);
+				};
+		}()),
+
+		getBackgroundPosition = (function() {
+			return supportsBackgroundPositionXY ?
+				function($elem) {
+					return [
+						$elem[0].style.backgroundPositionX,
+						$elem[0].style.backgroundPositionY
+					];
+				} :
+				function($elem) {
+					return $elem.css('background-position').split(' ');
+				};
+		}()),
 
 		setTransform = function($elem, val, dimension /* 'X' or 'Y' */) {
-			var currentTransform = $elem.css(vendorPrefix + 'transform');
+			var currentTransform = getComputedStyle($elem[0])[vendorPrefix('transform')];
 
 			if (currentTransform === 'none') {
-				$elem.css(vendorPrefix + 'transform', 'translate' + dimension + '(' + val + 'px)');
+				$elem[0].style[vendorPrefix('transform')] = 'translate' + dimension + '(' + val + 'px)';
 			} else {
-				$elem.css(vendorPrefix + 'transform', replaceNthOccurence(currentTransform, /(-?[0-9]+[.]?[0-9]*)/g, (dimension === 'X' ? 5 : 6), val));
+				$elem[0].style[vendorPrefix('transform')] = replaceNthOccurence(currentTransform, /(-?[0-9]+[.]?[0-9]*)/g, (dimension === 'X' ? 5 : 6), val);
 			}
 		},
 
@@ -132,10 +165,11 @@
 			this._defineElements();
 			this._defineGetters();
 			this._defineSetters();
+			this._handleWindowLoadAndResize();
 
-			this.refresh();
+			this._detectViewport();
+			this.refresh({ firstLoad: true });
 
-			this._startViewportDetectionLoop();
 			this._startAnimationLoop();
 		},
 		_defineElements: function() {
@@ -174,7 +208,25 @@
 				positionProperty[self.options.positionProperty].setTop($elem, top, startingTop);
 			};
 		},
-		refresh: function() {
+		_handleWindowLoadAndResize: function() {
+			var self = this,
+				$window = $(window);
+
+			if (self.options.responsive) {
+				$window.bind('load.' + this.name, function() {
+					self.refresh();
+				});
+			}
+
+			$window.bind('resize.' + this.name, function() {
+				self._detectViewport();
+
+				if (self.options.responsive) {
+					self.refresh();
+				}
+			});
+		},
+		refresh: function(options) {
 			var self = this,
 				oldLeft = self._getScrollLeft(),
 				oldTop = self._getScrollTop();
@@ -187,7 +239,7 @@
 			this._findBackgrounds();
 
 			// Fix for WebKit background rendering bug
-			if (navigator.userAgent.indexOf('WebKit') > 0) {
+			if (options && options.firstLoad && /WebKit/.test(navigator.userAgent)) {
 				$(window).load(function(){
 					var oldLeft = self._getScrollLeft(),
 						oldTop = self._getScrollTop();
@@ -202,6 +254,16 @@
 
 			self._setScrollLeft(oldLeft);
 			self._setScrollTop(oldTop);
+		},
+		_detectViewport: function() {
+			var viewportOffsets = this.$viewportElement.offset(),
+				hasOffsets = viewportOffsets !== null && viewportOffsets !== undefined;
+
+			this.viewportWidth = this.$viewportElement.width();
+			this.viewportHeight = this.$viewportElement.height();
+
+			this.viewportOffsetTop = hasOffsets ? viewportOffsets.top : 0;
+			this.viewportOffsetLeft = hasOffsets ? viewportOffsets.left : 0;
 		},
 		_findParticles: function(){
 			var self = this,
@@ -320,7 +382,7 @@
 
 			$backgroundElements.each(function(){
 				var $this = $(this),
-					backgroundPosition = $this.css('background-position').split(' '),
+					backgroundPosition = getBackgroundPosition($this),
 					horizontalOffset,
 					verticalOffset,
 					positionLeft,
@@ -328,7 +390,12 @@
 					marginLeft,
 					marginTop,
 					offsetLeft,
-					offsetTop;
+					offsetTop,
+					$offsetParent,
+					parentOffsetLeft = 0,
+					parentOffsetTop = 0,
+					tempParentOffsetLeft = 0,
+					tempParentOffsetTop = 0;
 
 				// Ensure this element isn't already part of another scrolling element
 				if (!$this.data('stellar-backgroundIsActive')) {
@@ -342,7 +409,7 @@
 					$this.data('stellar-backgroundStartingLeft', backgroundPosition[0]);
 					$this.data('stellar-backgroundStartingTop', backgroundPosition[1]);
 				} else {
-					$this.css('background-position', $this.data('stellar-backgroundStartingLeft') + ' ' + $this.data('stellar-backgroundStartingTop'));
+					setBackgroundPosition($this, $this.data('stellar-backgroundStartingLeft'), $this.data('stellar-backgroundStartingTop'));
 				}
 
 				// Catch-all for margin top/left properties (these evaluate to 'auto' in IE7 and IE8)
@@ -351,13 +418,30 @@
 
 				offsetLeft = $this.offset().left - marginLeft - scrollLeft;
 				offsetTop = $this.offset().top - marginTop - scrollTop;
+				
+				// Calculate the offset parent
+				$this.parents().each(function(){
+					var $this = $(this);
+
+					if ($this.data('stellar-offset-parent') === true) {
+						parentOffsetLeft = tempParentOffsetLeft;
+						parentOffsetTop = tempParentOffsetTop;
+						$offsetParent = $this;
+
+						return false;
+					} else {
+						tempParentOffsetLeft += $this.position().left;
+						tempParentOffsetTop += $this.position().top;
+					}
+				});
 
 				// Detect the offsets
-				horizontalOffset = ($this.data('stellar-horizontal-offset') !== undefined ? $this.data('stellar-horizontal-offset') : self.horizontalOffset);
-				verticalOffset = ($this.data('stellar-vertical-offset') !== undefined ? $this.data('stellar-vertical-offset') : self.verticalOffset);
+				horizontalOffset = ($this.data('stellar-horizontal-offset') !== undefined ? $this.data('stellar-horizontal-offset') : ($offsetParent !== undefined && $offsetParent.data('stellar-horizontal-offset') !== undefined ? $offsetParent.data('stellar-horizontal-offset') : self.horizontalOffset));
+				verticalOffset = ($this.data('stellar-vertical-offset') !== undefined ? $this.data('stellar-vertical-offset') : ($offsetParent !== undefined && $offsetParent.data('stellar-vertical-offset') !== undefined ? $offsetParent.data('stellar-vertical-offset') : self.verticalOffset));
 
 				self.backgrounds.push({
 					$element: $this,
+					$offsetParent: $offsetParent,
 					isFixed: $this.css('background-attachment') === 'fixed',
 					horizontalOffset: horizontalOffset,
 					verticalOffset: verticalOffset,
@@ -369,6 +453,8 @@
 					startingPositionTop: $this.position().top,
 					startingOffsetLeft: offsetLeft,
 					startingOffsetTop: offsetTop,
+					parentOffsetLeft: parentOffsetLeft,
+					parentOffsetTop: parentOffsetTop,
 					stellarRatio: $this.data('stellar-background-ratio') === undefined ? 1 : $this.data('stellar-background-ratio')
 				});
 			});
@@ -395,20 +481,22 @@
 
 			for (i = this.backgrounds.length - 1; i >= 0; i--) {
 				background = this.backgrounds[i];
-				background.$element.css('background-position', background.startingValueLeft + ' ' + background.startingValueTop);
+				setBackgroundPosition(background.$element, background.startingValueLeft, background.startingValueTop);
 			}
 
 			this._animationLoop = $.noop;
-			clearInterval(this._viewportDetectionInterval);
+
+			$(window).unbind('load.' + this.name).unbind('resize.' + this.name);
 		},
 		_setOffsets: function() {
-			var self = this;
+			var self = this,
+				$window = $(window);
 
-			$(window).unbind('resize.horizontal-' + this.name).unbind('resize.vertical-' + this.name);
+			$window.unbind('resize.horizontal-' + this.name).unbind('resize.vertical-' + this.name);
 
 			if (typeof this.options.horizontalOffset === 'function') {
 				this.horizontalOffset = this.options.horizontalOffset();
-				$(window).bind('resize.horizontal-' + this.name, function() {
+				$window.bind('resize.horizontal-' + this.name, function() {
 					self.horizontalOffset = self.options.horizontalOffset();
 				});
 			} else {
@@ -417,7 +505,7 @@
 
 			if (typeof this.options.verticalOffset === 'function') {
 				this.verticalOffset = this.options.verticalOffset();
-				$(window).bind('resize.vertical-' + this.name, function() {
+				$window.bind('resize.vertical-' + this.name, function() {
 					self.verticalOffset = self.options.verticalOffset();
 				});
 			} else {
@@ -500,26 +588,11 @@
 				background = this.backgrounds[i];
 
 				fixedRatioOffset = background.isFixed ? 0 : 1;
-				bgLeft = this.options.horizontalScrolling ? (scrollLeft - background.horizontalOffset - this.viewportOffsetLeft - background.startingOffsetLeft - background.startingBackgroundPositionLeft) * (fixedRatioOffset - background.stellarRatio) + 'px' : background.startingValueLeft;
-				bgTop = this.options.verticalScrolling ? (scrollTop - background.verticalOffset - this.viewportOffsetTop - background.startingOffsetTop - background.startingBackgroundPositionTop) * (fixedRatioOffset - background.stellarRatio) + 'px' : background.startingValueTop;
+				bgLeft = this.options.horizontalScrolling ? (scrollLeft + background.horizontalOffset - this.viewportOffsetLeft - background.startingOffsetLeft + background.parentOffsetLeft - background.startingBackgroundPositionLeft) * (fixedRatioOffset - background.stellarRatio) + 'px' : background.startingValueLeft;
+				bgTop = this.options.verticalScrolling ? (scrollTop + background.verticalOffset - this.viewportOffsetTop - background.startingOffsetTop + background.parentOffsetTop - background.startingBackgroundPositionTop) * (fixedRatioOffset - background.stellarRatio) + 'px' : background.startingValueTop;
 
-				background.$element.css('background-position', bgLeft + ' ' + bgTop);
+				setBackgroundPosition(background.$element, bgLeft, bgTop);
 			}
-		},
-		_startViewportDetectionLoop: function() {
-			var self = this,
-				detect = function() {
-					var viewportOffsets = self.$viewportElement.offset();
-
-					self.viewportWidth = self.$viewportElement.width();
-					self.viewportHeight = self.$viewportElement.height();
-
-					self.viewportOffsetTop = viewportOffsets !== null ? viewportOffsets.top : 0;
-					self.viewportOffsetLeft = viewportOffsets !== null ? viewportOffsets.left : 0;
-				};
-
-			detect();
-			this._viewportDetectionInterval = setInterval(detect, this.options.viewportDetectionInterval);
 		},
 		_startAnimationLoop: function() {
 			var self = this,
@@ -532,7 +605,7 @@
 						function(callback, element){
 							window.setTimeout(callback, 1000 / 60);
 						};
-				})();
+				}());
 
 			this._animationLoop = function(){
 				requestAnimFrame(self._animationLoop);
@@ -574,4 +647,4 @@
 
 	//Expose the plugin class so it can be modified
 	window.Stellar = Plugin;
-})(jQuery, window, document);
+}(jQuery, window, document));

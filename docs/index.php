@@ -124,6 +124,9 @@ $('#main').stellar();
   horizontalOffset: 0,
   verticalOffset: 0,
 
+  // Refreshes parallax content on window load and resize
+  responsive: true,
+
   // Select which property is used to calculate scroll.
   // Choose 'scroll', 'position', 'margin' or 'transform',
   // or <a href="#scroll-property-plugin">write your own 'scrollProperty' plugin</a>.
@@ -140,9 +143,6 @@ $('#main').stellar();
 
   // Hide parallax elements that move outside the viewport
   hideDistantElements: true,
-
-  // Set how often the viewport size is detected
-  viewportDetectionInterval: 1000,
 
   // Customise how elements are shown and hidden
   hideElement: function($elem) { $elem.hide(); },
