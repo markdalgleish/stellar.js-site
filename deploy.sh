@@ -1,0 +1,1 @@
+lftp -e 'mirror -R -v --exclude .git --exclude deploy.sh --exclude .DS_Store . /public_html/projects/stellar.js; bye' -u $1 ftp.markdalgleish.com
