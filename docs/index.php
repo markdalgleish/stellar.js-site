@@ -161,18 +161,11 @@ $('#main').stellar();
 		<p>Out of the box, Stellar.js supports the following scroll properties:<br />'scroll', 'position', 'margin' and 'transform'.</p>
 		<p>If your method for creating a scrolling interface isn't covered by one of these, you can write your own. For example, if 'margin' didn't exist yet you could write it like so:</p>
 		<pre><code>$.stellar.scrollProperty.margin = {
-  getTop: function($element) {
-    return parseInt($element.css('margin-top'), 10) * -1;
-  },
-  setTop: function($element, val) {
-    $element.css('margin-top', val);
-  },
-
   getLeft: function($element) {
     return parseInt($element.css('margin-left'), 10) * -1;
   },
-  setLeft: function($element, val) {
-    $element.css('margin-left', val);
+  getTop: function($element) {
+    return parseInt($element.css('margin-top'), 10) * -1;
   }
 }</code></pre>
 		<p>Now, you can specify this scroll property in Stellar.js' configuration.</p>
@@ -196,6 +189,19 @@ $('#main').stellar();
 		<p>Now, you can specify this position property in Stellar.js' configuration.</p>
 		<pre><code>$.stellar({
   positionProperty: 'position'
+});</code></pre>
+		<p>If, for technical reasons, you need to set both properties at once, you can define a single 'setPosition' function:</p>
+		<pre><code>$.stellar.positionProperty.foobar = {
+  setPosition: function($el, x, startX, y, startY) {
+    $el.css('transform', 'translate3d(' +
+      (x - startX) + 'px, ' +
+      (y - startY) + 'px, ' +
+      '0)');
+  }
+}
+
+$.stellar({
+  positionProperty: 'foobar'
 });</code></pre>
 	</div>
 	
